@@ -5,7 +5,9 @@ import POJOS.Country;
 import POJOS.Customer;
 import POJOS.User;
 import io.restassured.response.Response;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
+import utilities.ObjectMapperUtils;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.oauth;
@@ -34,7 +36,11 @@ public class GetRequest09 extends GmiBankBaseUrl {
         assertEquals(expectedData.getUser().getEmail(),actualData.getUser().getEmail());
         assertEquals(expectedData.getCity(),actualData.getCity());
         assertEquals(expectedData.getCountry().getName(),actualData.getCountry().getName());
-
+        System.out.println("******************");
+        Customer actualData2 = ObjectMapperUtils.convertJsontoJava(response.asString(),Customer.class);
+        System.out.println("actualData2: " + actualData2);
+        assertEquals(expectedData.getFirstName(),actualData2.getFirstName());
+        assertEquals(expectedData.getCountry().getName(),actualData2.getCountry().getName());
     }
 }
 /*
