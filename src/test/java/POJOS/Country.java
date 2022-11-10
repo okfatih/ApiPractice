@@ -9,7 +9,9 @@ private String name;
 private String states;
 
     public Country(int id, String name, String states) {
+
         this.id = id;
+
         this.name = name;
         this.states = states;
     }
